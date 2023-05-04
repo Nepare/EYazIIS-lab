@@ -1,0 +1,119 @@
+<MyWidget>:
+    input_widget: loading_data
+    output_widget: saving_data
+    filter_word_widget: filter_data
+
+    BoxLayout:
+        orientation : "vertical"
+        Button:
+            text: 'Загрузить информацию'
+            on_press: root.open_window()
+
+        Button:
+            text: 'Сохранить'
+            on_press: root.save_window()
+
+        Button:
+            text: 'Разбить на лексемы'
+            on_press: root.process_file()
+
+        Button:
+            text: 'Построить дерево подчинения'
+            on_press: root.treeify_file()
+        BoxLayout:
+            TextInput:
+                id: filter_data
+
+            Button:
+                text: 'Отфильтровать'
+                on_press: root.filter_words()
+
+        Button:
+            text: 'Инфо'
+            on_press: root.about()
+
+
+
+    TextInput:
+        id: loading_data
+
+    TextInput:
+        id: saving_data
+
+
+<DownloadInfo>:
+    title: 'Выберите файл'
+    size_hint: (0.9, 0.9)
+
+    BoxLayout:
+        orientation: "vertical"
+
+        FileChooserListView:
+            id: filechooser
+            path: "input"
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: 130
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Select file"
+                on_press: root.select_file(filechooser.selection)
+
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Cancel"
+                on_press: root.close_window()
+
+
+<SaveInfo>:
+    title: 'Save File'
+    size_hint: (0.9, 0.9)
+
+    file_name : file_name
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text:"Enter name of file"
+        TextInput:
+            id: file_name
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: 130
+
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Save file"
+                on_press: root.save_file()
+
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Cancel"
+                on_press: root.close_window()
+
+
+<Info>
+    title: 'About'
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            text:'Разработали: Сивашко Антон, Кожевникова Анна, Павлюкевич Иван\nВариант: 22 (TXT, RTF, 4 задание, английский язык)\nПрограмма решает задачи автоматического лексического и лексико-грамматического анализа ТЕЯ. Результатом является решение задачи автоматического лексического и лексико-грамматического анализа текста естественного языка. Данное приложение позволяет проводить анализ ТЕЯ для получения словаря характерных лексем.'
+
+        Button:
+            text: 'Закрыть'
+            on_press: root.dismiss()
+
+<ImageP>:
+    background_color: [255,255,255,255]
+    size_hint: (0.9, 0.9)
+    Image:
+        id: my_img
+        source: ''
